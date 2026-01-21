@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header1 {
+    display: flex;
+    align-items: center;
+    background-color: lightcoral;
+    padding: 70px 0 0 0; 
+}
+
+.menu img{
+    width: 200px;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f74780;
+}
+
+.logo { 
+    font-size: 25px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 800 ;
+}
+ul ol {
+    list-style: none;
+}
+
+.nav1 ul li {
+    position: relative;
+    float: left;
+    padding: 10px, 15px;
+    display: block;
+    background-color: #f74780;
+}
+
+.menu .nav1 ul li a {
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    display: block;
+}
+
+.nav1 li a {
+    padding: 10px, 15px;
+    display: block;
+}
+
+.menu .nav1 ul li a:hover {
+    color: lightpink;
+}
+
+.nav1 > li {
+    float: left;
+}
+
+.nav1 li ul {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+
+.nav1 li:hover > ul {
+    display: block;
+}
+
+.nav1 li ul li{
+    position: relative;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label {
+    cursor: pointer;
+    display: none;
+}
+
+h1{
+    color: #f74780;
+    text-align: center;
+    font-size: 38px;    
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.service-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(255, 105, 180, 0.2);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: #e16790;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: black;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.precio {
+    font-size: 1.3em;
+    color: #9c27b0;
+    font-weight: bold;
+}
+
+#btn-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background: pink;
+    color: white;
+    border-radius: 50%;
+    font-size: 32px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 10000;
+
+    /* Empieza oculto */
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+  /* Aparece cuando el <body> tiene scroll (trayectoria */
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+
+}
+
+  /* Magia pura: cuando bajamos, el fondo rojo se mueve y activa el botón */
+@supports (animation-timeline: scroll()) {
+    #btn-arriba {
+        animation: aparecer 0.6s forwards;
+        animation-timeline: scroll();
+        animation-range: 100px 300px;
+    }
+
+    @keyframes aparecer {
+        from { opacity: 0; transform: scale(0) translateY(50px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+}
+
+footer {
+    padding: 0px 0px 5px 0px;
+    color: black;
+    text-align: center;
+    background-color: #ffe5f0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column h2 {
+    color: #f74780;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-column h3 {
+    color: #f74780;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column a{
+    color: black;
+    text-decoration: none;
+}

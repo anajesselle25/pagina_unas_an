@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+    <header>
+        <nav><a href="login.html">Volver</a></nav>
+    </header>
+    <section class="main">
+
+        <figure class="main__figure">
+            <img src="img/login1.png" class="main__img">
+        </figure>
+
+        <div class="main__contact">
+
+            <h2 class="main__title">¡Bienvenido!</h2>
+            <p class="main__paragraph">¡Registrate aqui!</p>
+
+            <form class="main__form">
+
+                <input type="text" name="usuario" placeholder="Ingrese Nombre de Usuario" class="main__input">
+
+                <input type="email" required placeholder="Ingrese Correo Electronico" class="main__input">
+
+                <input type="password"  name="clave" required minlength="8" pattern="^(?=.*\d).{8,}$"
+                placeholder="Contraseña" title="Minimo 8 caracteres con 1 numero" class="main__input">
+
+                <input type="submit" value="Iniciar Sesion" class="main__input main__input--send">
+
+            </form>
+            <p>¿Ya estas registrado?</p>
+            <p class="main__paragraph"><a href="login.html">Inicia Sesion</a></p>
+
+            <article class="main__social">
+
+                <a href="#" class="main__link">
+                    <img src="img/panorama.png" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="img/cromo.png" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="img/logotipo-de-apple.png" class="main__icon">
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+</body>
+</html>
+

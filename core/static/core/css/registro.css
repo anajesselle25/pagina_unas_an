@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: 'Raleway', sans-serif;
+    min-height: 600px;
+    padding: 40px 0;
+    background-image: linear-gradient(to top, #f74780 0%, pink 100%);
+    background-color: #f74780;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    text-align: left;
+    width: 100%;
+    margin: 0px 0px 10px 30px;
+}
+
+nav a {
+    padding: 5px;
+    color: black;
+    background-color: #f74780;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.main{
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.472), rgba(255, 255, 255, 0.365));
+    overflow: hidden;
+    padding: .7em;
+    border-radius: 1em;
+
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: .6em;
+
+    animation: mostrar 1.5s ease-in-out;
+}
+
+@keyframes mostrar {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+.main__figure{
+    overflow: hidden;
+    border-radius: 1em;
+    background-color: #f8bbd0;
+    display: flex;
+}
+
+.main__img{
+    margin: auto;
+    width: 80%;
+    max-width: 60vw;
+    border-radius: 40px;
+}
+
+.main__contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5em;
+    padding: 3em .7em;
+    text-align: center;
+}
+
+.main__form{
+    display: grid;
+    justify-items: center;
+    gap: 1.5em;
+}
+
+.main__input{
+    width: 80%;
+    max-width: 500px;
+    outline: none;
+    border: none;
+    padding: 1em;
+    font: inherit;
+    border-radius: .6em;
+}
+
+.main__input--send{
+    background-color: #231a36;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.main__title{
+    font-size: 2.3rem;
+}
+
+.main__paragraph a {
+    margin: .3em 0;
+    text-decoration: none;
+    color:  #301962;
+}
+
+.main__paragraph a:hover {
+    color: white;
+}
+
+
+.main__social{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    grid-auto-columns: max-content;
+    gap: 1em;
+}
+
+.main__link{
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: .6em 1.5em;
+}
+
+.main__link:hover{
+    background-color: #fff;
+}
+
+.main__icon{
+    width: 30px;
+    height: 30px;
+}
+

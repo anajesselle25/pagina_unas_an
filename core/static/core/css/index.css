@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header1 {
+    display: flex;
+    align-items: center;
+    background-color: lightcoral;
+    padding: 70px 0 0 0; 
+}
+
+.menu img{
+    width: 200px;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f74780;
+}
+
+.logo { 
+    font-size: 25px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 800 ;
+}
+ul ol {
+    list-style: none;
+}
+
+.nav1 ul li {
+    position: relative;
+    float: left;
+    padding: 10px, 15px;
+    display: block;
+    background-color: #f74780;
+}
+
+.menu .nav1 ul li a {
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    display: block;
+}
+
+.nav1 li a {
+    padding: 10px, 15px;
+    display: block;
+}
+
+.menu .nav1 ul li a:hover {
+    color: lightpink;
+}
+
+.nav1 > li {
+    float: left;
+}
+
+.nav1 li ul {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+
+.nav1 li:hover > ul {
+    display: block;
+}
+
+.nav1 li ul li{
+    position: relative;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label {
+    cursor: pointer;
+    display: none;
+}
+
+.hero {
+/* La primera imagen del carrusel */
+
+    background-image: url('{%static "img/uñas.jpg"%}');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    color: black;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: background-slideshow 20s infinite; /* La animación dura 20s y se repite */
+}
+
+/* Capa semitransparente para que el texto sea legible */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 182, 193, 0.3); /* Rosa pastel semitransparente */
+    z-index: 1;
+}
+
+.hero-text {
+    font-size: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h2 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.hero-text p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* --- Animación del Carrusel de Fondos --- */
+@keyframes background-slideshow {
+    0% {
+        background-image: url('img/maquillaje1.jpeg');
+    }
+    25% {
+        background-image: url('img/francesa.jpg');
+    }
+    50% {
+        background-image: url('img/uñas1.jpeg');
+    }
+    75% {
+        background-image: url('img/make\ up.jpg');
+    }
+    100% {
+        background-image: url('img/maquillaje\ y\ unas.jpg');
+}
+}
+
+/* Info Section */
+.info-section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+        box-shadow: 0 6px 25px rgba(255, 105, 180, 0.2);
+        margin: 40px 0;
+}
+
+.info-section h2 {
+    color: #ff4081;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.info-section p {
+    line-height: 1.8;
+    color: black;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Galería */
+.galeria h2{
+    text-align: center;
+    font-size: 38px;
+    color: #ff4081;
+    margin: 40px o;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+#btn-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background: pink;
+    color: white;
+    border-radius: 50%;
+    font-size: 32px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 10000;
+
+    /* Empieza oculto */
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+  /* Aparece cuando el <body> tiene scroll (trayectoria */
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+
+}
+
+  /* Magia pura: cuando bajamos, el fondo rojo se mueve y activa el botón */
+@supports (animation-timeline: scroll()) {
+    #btn-arriba {
+        animation: aparecer 0.6s forwards;
+        animation-timeline: scroll();
+        animation-range: 100px 300px;
+    }
+
+    @keyframes aparecer {
+        from { opacity: 0; transform: scale(0) translateY(50px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+}
+
+.footer {
+    background-color: #ffe5f0;
+    padding: 10px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3 {
+    color: #f74780;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.link a {
+    color: black;
+    display:  block;
+    margin-bottom: 20px;
+}
+
+.link a:hover {
+    color: #f74780;
+}
+
+@media (max-width:991px) {
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
