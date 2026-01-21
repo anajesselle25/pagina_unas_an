@@ -1,15 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
     <title>AN Studio</title>
 </head>
 <body>
     <header class="header1">
         <div class="menu">
-            <img src="img/logoo3.png" alt="logo">
+            <img src="{% static 'core/img/logoo3.png' %}" alt="logo">
 
             <nav class="nav1">
                 <ul>
@@ -50,13 +51,13 @@
         
         <div class="gallery">
         <div class="gallery-item">
-            <img src="img/unas123.png" alt="Manicura">
+            <img src="{% static 'core/img/unas123.png' %}" alt="Manicura">
         </div>
         <div class="gallery-item">
-            <img src="img/maquillaje2.jpeg" alt="Maquillaje">
+            <img src="{% static 'core/img/maquillaje2.jpeg' %}" alt="Maquillaje">
         </div>
         <div class="gallery-item">
-            <img src="img/pedicure.jpeg" alt="Pedicure">
+            <img src="{% static 'core/img/pedicure.jpeg' %}" alt="Pedicure">
         </div>
         </div>
     </main>

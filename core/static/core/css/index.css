@@ -155,19 +155,19 @@ ul ol {
 /* --- Animación del Carrusel de Fondos --- */
 @keyframes background-slideshow {
     0% {
-        background-image: url('img/maquillaje1.jpeg');
+        background-image: url('../img/maquillaje1.jpeg');
     }
     25% {
-        background-image: url('img/francesa.jpg');
+        background-image: url('../img/francesa.jpg');
     }
     50% {
-        background-image: url('img/uñas1.jpeg');
+        background-image: url('../img/uñas1.jpeg');
     }
     75% {
-        background-image: url('img/make\ up.jpg');
+        background-image: url('../img/make\ up.jpg');
     }
     100% {
-        background-image: url('img/maquillaje\ y\ unas.jpg');
+        background-image: url('../img/maquillaje\ y\ unas.jpg');
 }
 }
 
