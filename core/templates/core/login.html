@@ -1,19 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
     <title>Login</title>
 </head>
 <body>
     <header>
-        <nav><a href="Pagina _Uñas.html">Volver</a></nav>
+        <nav><a href="{% url 'index' %}">Volver</a></nav>
     </header>
     <section class="main">
 
         <figure class="main__figure">
-            <img src="img/login1.png" class="main__img">
+            <img src="{% static 'core/img/login1.png' %}" class="main__img">
         </figure>
 
         <div class="main__contact">
@@ -30,19 +31,19 @@
 
             </form>
             <p> ¿Es la primera vez que estas aqui?</p>
-            <p class="main__paragraph"><a href="registro.html">Crea una cuenta</a></p>
+            <p class="main__paragraph"><a href="{% url 'registro' %}">Crea una cuenta</a></p>
 
             <article class="main__social">
                 <a href="#" class="main__link">
-                    <img src="img/panorama.png" class="main__icon">
+                    <img src="{% static 'core/img/panorama.png' %}" class="main__icon">
                 </a>
 
                 <a href="#" class="main__link">
-                    <img src="img/cromo.png" class="main__icon">
+                    <img src="{% static 'core/img/cromo.png' %}" class="main__icon">
                 </a>
 
                 <a href="#" class="main__link">
-                    <img src="img/logotipo-de-apple.png" class="main__icon">
+                    <img src="{% static 'core/img/logotipo-de-apple.png' %}" class="main__icon">
                 </a>
             </article>
         </div>

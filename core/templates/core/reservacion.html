@@ -1,28 +1,29 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reservacion.css">
+    <link rel="stylesheet" href="{% static 'core/css/reservacion.css' %}">
     <title>Reservacion</title>
 </head>
 <body>
     <header class="header1">
         <div class="menu">
-            <img src="img/logoo3.png" alt="logo">
+            <img src="{% static 'core/img/logoo3.png' %}" alt="logo">
 
             <nav class="nav1">
                 <ul>
-                    <li><a href="Pagina _Uñas.html">Inicio</a></li>
+                    <li><a href="{% url 'index' %}">Inicio</a></li>
                     <li><a href="">Servicios</a>
                     <ul>
-                        <li><a href="index1.html">Manicure y Pedicure</a></li>
-                        <li><a href="maquillaje.html">Maquillaje</a></li>
+                        <li><a href="{% url 'index1' %}">Manicure y Pedicure</a></li>
+                        <li><a href="{% url 'maquillaje' %}">Maquillaje</a></li>
                     </ul>
                     </li>
                     <li><a href="">Reservaciones</a>
                     <ul>
-                        <li><a href="reservacion.html">Solicitar Cita</a></li>
+                        <li><a href="{% url 'reservacion' %}">Solicitar Cita</a></li>
                     </ul>
                     </li>
                 </ul>
