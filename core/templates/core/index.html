@@ -1,55 +1,29 @@
+{% extends "core/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
-    <title>AN Studio</title>
-</head>
-<body>
-    <header class="header1">
-        <div class="menu">
-            <img src="{% static 'core/img/logoo3.png' %}" alt="logo">
+{% block css_styles %}
+        <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+        {{ block.super }}
+    {% endblock css_styles %}
 
-            <nav class="nav1">
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="">Servicios</a>
-                    <ul>
-                        <li><a href="{% url 'index1' %}">Manicure y Pedicure</a></li>
-                        <li><a href="{% url 'maquillaje' %}">Maquillaje</a></li>
-                    </ul>
-                    </li>
-                    <li><a href="">Reservaciones</a>
-                    <ul>
-                        <li><a href="{% url 'login' %}">Solicitar Cita</a></li>
-                    </ul>
-                    </li>
-                </ul>
-            </nav>
+{% block content %}
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Bienvenidas al Salon de Belleza AN Studio.</h1>
+            <p>Las mejores uñas y los mejores maquillajes para los mejores momentos.</p>
         </div>
-    </header>
-    
-    <main>
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Bienvenidas al Salon de Belleza AN Studio.</h1>
-                <p>Las mejores uñas y los mejores maquillajes para los mejores momentos.</p>
-            </div>
-        </section>
+    </section>
 
-        <div class="info-section">
-            <h2>¿Porque elegirnos?</h2>
-            <p>En AN Studio nos dedicamos a brindarte la mejor experiencia en cuidado de uñas y maquillaje profesional. Nos encargamos de ultilizar productos de alta calidad y tecnicas innovadoras para garantizar resultados espectaculares. </p>
-            <p>Ofrecemos un ambiente relajante y acogedor donde podras disfrutar de un momento de autocuidado mientras tu uñas en obras de arte y dejamos tu piel radiante. </p>            </div>
-        </div>
+    <div class="info-section">
+        <h2>¿Porque elegirnos?</h2>
+        <p>En AN Studio nos dedicamos a brindarte la mejor experiencia en cuidado de uñas y maquillaje profesional. Nos encargamos de ultilizar productos de alta calidad y tecnicas innovadoras para garantizar resultados espectaculares. </p>
+        <p>Ofrecemos un ambiente relajante y acogedor donde podras disfrutar de un momento de autocuidado mientras tu uñas en obras de arte y dejamos tu piel radiante. </p>            </div>
+    </div>
 
-        <div class="galeria">
-            <h2> Galería de Trabajos.</h2>
-        </div>
-        
-        <div class="gallery">
+    <div class="galeria">
+        <h2> Galería de Trabajos.</h2>
+    </div>
+
+    <div class="gallery">
         <div class="gallery-item">
             <img src="{% static 'core/img/unas123.png' %}" alt="Manicura">
         </div>
@@ -59,38 +33,5 @@
         <div class="gallery-item">
             <img src="{% static 'core/img/pedicure.jpeg' %}" alt="Pedicure">
         </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content container">
-            <div class="link">
-                <h3>Contactanos</h3>
-                <ul>
-                    <li><a href="#">Email:an_studio@gmail.com</a></li>
-                    <li><a href="#">Telefono: 0412 0697586</a></li>
-                    <li><a href="#">Direccion: calle principal</a></li>
-                </ul>
-            </div>
-
-            <div class="link">
-                <h3>Enlaces</h3>
-                <ul>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Contactos</a></li>
-                </ul>
-            </div>
-            <div class="link">
-                <h3>Siguenos</h3>
-                <ul>
-                    <li><a href="https://facebook.com">Facebook</a></li>
-                    <li><a href="https://instagram.com">Instagram</a></li>
-                    <li><a href="https://twitter">Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-        <a href="#" id="btn-arriba">↑</a>
-    </footer>
-</body>
-</html>
+    </div>
+{% endblock %}

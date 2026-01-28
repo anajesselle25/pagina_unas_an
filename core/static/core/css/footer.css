@@ -1,0 +1,37 @@
+
+.footer {
+    background-color: #ffe5f0;
+    padding: 10px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3 {
+    color: #f74780;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.link a {
+    color: black;
+    display:  block;
+    margin-bottom: 20px;
+}
+
+.link a:hover {
+    color: #f74780;
+}
+
+@media (max-width:991px) {
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

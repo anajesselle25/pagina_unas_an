@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block css_styles %}
+        <link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
+    {% endblock css_styles %}
+    <title>{% block title %}AN Studio{% endblock %} </title>
+</head>
+<body>
+    <header class="header1">
+        <div class="menu">
+            <img src="{% static 'core/img/logoo3.png' %}" alt="logo">
+
+            <nav class="nav1">
+                <ul>
+                    <li><a href="{% url 'index' %}">Inicio</a></li>
+                    <li><a href="">Servicios</a>
+                    <ul>
+                        <li><a href="{% url 'index1' %}">Manicure y Pedicure</a></li>
+                        <li><a href="{% url 'maquillaje' %}">Maquillaje</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="">Reservaciones</a>
+                    <ul>
+                        <li><a href="{% url 'login' %}">Solicitar Cita</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+            {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="link">
+                <h3>Contactanos</h3>
+                <ul>
+                    <li><a href="#">Email:an_studio@gmail.com</a></li>
+                    <li><a href="#">Telefono: 0412 0697586</a></li>
+                    <li><a href="#">Direccion: calle principal</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Contactos</a></li>
+                </ul>
+            </div>
+            <div class="link">
+                <h3>Siguenos</h3>
+                <ul>
+                    <li><a href="https://facebook.com">Facebook</a></li>
+                    <li><a href="https://instagram.com">Instagram</a></li>
+                    <li><a href="https://twitter">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <a href="#" id="btn-arriba">↑</a>
+    </footer>
+
+</body>

@@ -1,106 +1,60 @@
+{% extends "core/base.html" %}
 {% load static%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% block css_styles %}
     <link rel="stylesheet" href="{% static 'core/css/reservacion.css' %}">
-    <title>Reservacion</title>
-</head>
-<body>
-    <header class="header1">
-        <div class="menu">
-            <img src="{% static 'core/img/logoo3.png' %}" alt="logo">
+    {{ block.super }}
+{% endblock css_styles %}
 
-            <nav class="nav1">
-                <ul>
-                    <li><a href="{% url 'index' %}">Inicio</a></li>
-                    <li><a href="">Servicios</a>
-                    <ul>
-                        <li><a href="{% url 'index1' %}">Manicure y Pedicure</a></li>
-                        <li><a href="{% url 'maquillaje' %}">Maquillaje</a></li>
-                    </ul>
-                    </li>
-                    <li><a href="">Reservaciones</a>
-                    <ul>
-                        <li><a href="{% url 'reservacion' %}">Solicitar Cita</a></li>
-                    </ul>
-                    </li>
-                </ul>
-            </nav>
+{% block content %}
+    <div id="reservacion" class="page">
+        <div class="reservacion-from">
+            <h2>Agendar cita</h2>
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="name"> Nombre Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"> Telefono </label>
+                        <input type="telefono" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direction"> Direccion </label>
+                        <input type="direccion" id="direction" name="direction" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"> Email </label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Servicio</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="manicura-clasica">Manicura Clásica</option>
+                            <option value="manicura-gel">Manicura en Gel</option>
+                            <option value="unas-acrilicas">Uñas Acrílicas</option>
+                            <option value="pedicura-spa">Pedicura</option>
+                            <option value="nail-art">Maquillaje </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha Preferida</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje (opcional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Cuéntanos sobre tus preferencias o diseños especiales..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Reservar Cita</button>
+                </form>
         </div>
-    </header>
-    <main>
-        <div id="reservacion" class="page">
-            <div class="reservacion-from">
-                <h2>Agendar cita</h2>
-                    <form id="appointmentForm">
-                        <div class="form-group">
-                            <label for="name"> Nombre Completo</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone"> Telefono </label>
-                            <input type="telefono" id="phone" name="phone" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="direction"> Direccion </label>
-                            <input type="direccion" id="direction" name="direction" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email"> Email </label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="service">Servicio</label>
-                            <select id="service" name="service" required>
-                                <option value="">Selecciona un servicio</option>
-                                <option value="manicura-clasica">Manicura Clásica</option>
-                                <option value="manicura-gel">Manicura en Gel</option>
-                                <option value="unas-acrilicas">Uñas Acrílicas</option>
-                                <option value="pedicura-spa">Pedicura</option>
-                                <option value="nail-art">Maquillaje </option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="date">Fecha Preferida</label>
-                            <input type="date" id="date" name="date" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Mensaje (opcional)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Cuéntanos sobre tus preferencias o diseños especiales..."></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Reservar Cita</button>
-                    </form>
-            </div>
-        </div>
-    </main> 
-    
-    <footer>
-        <div class="footer-column">
-            <h2>Contactanos</h2>
-        <ul>
-            <li>Email:an_studio@gmail.com</li>
-            <li>Telefono: 0412 0697586</li>
-            <li>Direccion: Calle Principal.</li>
-        </ul>
-        </div>
-        
-        <div class="footer-column">
-            <h3>Siguenos</h3>
-        <ul>
-            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-        </ul>
-        </div>
-    </footer>
-</body>
-</html>
+    </div>
+{% endblock %}
