@@ -1,40 +1,44 @@
 {% extends "core/base.html" %}
-{% load static%}
+{% load static %}
 
 {% block css_styles %}
-    <link rel="stylesheet" href="{% static 'core/css/reservacion.css' %}">
-    {{ block.super }}
+<!--no te olvides de poner el css que te envie aqui-->
+<link rel="stylesheet" href= "{% static 'core/css/formulario_registro.css' %}">
+
 {% endblock css_styles %}
 
-{% block content %}
+{% block title %} Registro de Servicio {% endblock %}
 
-<form method="post" action="{% url 'service_create' %}" enctype="multipart/form-data">
-    <fieldset>
-        {% csrf_token %}
+{% block header %}
 
-        <div class="form-group">
-            <label for="name">Nombre: </label>
-            <input type="text" name="name" placeholder="Nombre del servicio: " required>
-
-            <label for="price">Precio: </label>
-            <input type="text" id="price" name="price" placeholder="0.0" required>
-
-            <label for="description">Descripcion: </label>
-            <textarea name="description" placeholder="Descripcion del servicio: "></textarea>
-
-            <input type="file" name="image" id="image">
-        </div>
-
-        <label for="service_type">Tipo de Servicio: </label>
-        <select id="service_type" name="service_type">
-            {% for service_type_obj in service_types %}
-                <option value="{{ service_type_obj.id }}" {% if service_type_obj.id == service_type_id|add:"0" %}
-                selected{% endif %}>{{ service_type_obj }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Crear</button>
-
-    </fieldset>
 {% endblock %}
+{% block content %}
+<section class="main">
+        <figure class="main__figure">
+            <img src="{% static 'core/img/login1.png' %}" class="main__img" alt="">
+        </figure>
 
+        <div class="main__contact">
+            <h2 class="main__title">Nuevo Servicio</h2>
+            <p class="main__paragraph">Ingresa los datos del servicio</p>
+            <form class="main__form" method="POST" enctype="multipart/form-data" action="{% url 'service_create' %}">
+                {% csrf_token %}
 
+                <input type="text" name="name" placeholder="Nombre del servicio: " class="main__input" required>
+                <textarea name="description" placeholder="Descripcion del servicio:" class="main__input" required></textarea>
+                <input type="text" id="price" name="price" placeholder="Precio" class="main__input" required>
+
+                <input type="file" name="image" id="image" class="main__input" required>
+
+                <select id="service_type" name="service_type" class="main__input" required>
+                    {% for service_type_obj in service_types %}
+                        <option value="{{ service_type_obj.id }}" {% if service_type_obj.id == service_type_id|add:"0" %}
+                        selected{% endif %}>{{ service_type_obj }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" value="Registrar servicio" class="main_input main_input--send">
+            </form>
+        </div>
+    </section>
+{% endblock %}

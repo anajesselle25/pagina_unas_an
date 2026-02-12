@@ -72,6 +72,11 @@ class Service(models.Model):
         
     def __str__(self):
         return f"El servicio de {self.service.name} tiene un precio  de {self.service.price} "
+    
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete() #borra el archivo fisico del disco
+        super().delete(*args, **kwargs)  #borra el registro del modelo de la DB
 
 #-------------------------------------------------------------------
 #Reservacion

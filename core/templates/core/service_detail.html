@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/maquillaje.css' %}">
+    {{ block.super }}
+{% endblock css_styles %}
+
+{% block content %}
+    <div id="services" class="page"> 
+        {% include "core/includes/service_card.html" %}
+
+    <p>
+        <a href="{% url 'maquillaje' %}">Volver a la lista de servicios</a>
+    </p>
+    </div>
+{% endblock %}

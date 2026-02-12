@@ -1,0 +1,59 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block css_styles %}
+<!--no te olvides de poner el css que te envie aqui-->
+<link rel="stylesheet" href= "{% static 'core/css/formulario_registro.css' %}">
+
+{% endblock css_styles %}
+
+{% block title %} Actualización de Servicio {% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block content %}
+<section class="main">
+        <figure class="main__figure">
+            <img src="{% static 'core/img/login1.png' %}" class="main__img" alt="">
+        </figure>
+
+        <div class="main__contact">
+            <h2 class="main__title">Actualización de  Servicio</h2>
+            <p class="main__paragraph">Ingresa los datos nuevos del servicio</p>
+            <form class="main__form" method="POST" enctype="multipart/form-data" action="{% url 'service_update' id=service.id %}">
+                {% csrf_token %}
+
+                <input type="text" name="name" placeholder="Nombre del nuevo servicio: " class="main__input"  
+                value="{{ service.name }}">
+                <textarea name="description" placeholder="Descripcion del nuevo servicio:" class="main__input" 
+                value="{{ service.description }}"></textarea>
+                <input type="text" id="price" name="price" placeholder="Precio " class="main__input"
+                value="{{ service.price|floatformat:2 }}">
+
+                {% if service.image %}
+                    <img src=" {{ service.image.url }}" alt="Imagen Actual" width="150">
+                {% else %}
+                    <p> No hay imagen actual. </p>
+                {% endif %}
+
+                <label for="image">Cambiar Imagen: </label>
+                <input type="file" name="image" id="image" class="main__input">
+
+                <select id="service_type" name="service_type" class="main__input" required>
+                    {% for service_type_obj in service_types %}
+                        <option value="{{ service_type_obj.id }}" 
+                        {% if service.service_type and service_type_obj.id == service.service_type.id %}
+                        selected{% endif %}>{{ service_type_obj.id }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" value="Actualizar Servicio" class="main_input main_input--send">
+            </form>
+            <p>
+                <a href=" {% url 'maquillaje' %}">Volver a la lista de servicios</a>
+            </p>
+        </div>
+
+    </section>
+{% endblock %}

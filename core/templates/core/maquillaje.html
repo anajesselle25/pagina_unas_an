@@ -11,6 +11,19 @@
 {% block content %}
     <div id="services" class="page"> 
         <h1>Maquillaje Profesional</h1>
-        {% include "core/includes/service_card.html" %}
+        {% if services %}
+            {% for s in services %}
+            <a href=" {% url 'service_detail' id=s.id %}">
+                {% include "core/includes/service_card.html" %}</a>
+            {% endfor %}
+
+        {% else %}
+            <p> No hay servicios disponibles. </p>
+        {% endif %}
+
+        <p>
+            <a href=" {% url 'service_create' %}">Crear Servicios </a>
+        </p>
+        
     </div>
 {% endblock %}

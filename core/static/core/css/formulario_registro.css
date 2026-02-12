@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    background-image: linear-gradient(to top, #f74780 0%, pink 100%);
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* header */
+.header1 {
+    display: flex;
+    align-items: center;
+    background-color: lightcoral;
+    padding: 70px 0 0 0; 
+}
+
+.menu img{
+    width: 200px;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f74780;
+}
+
+.logo { 
+    font-size: 25px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 800 ;
+}
+ul ol {
+    list-style: none;
+}
+
+.nav1 ul li {
+    position: relative;
+    z-index: 1000;
+    float: left;
+    padding: 10px, 15px;
+    display: block;
+    background-color: #f74780;
+}
+
+.menu .nav1 ul li a {
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    display: block;
+}
+
+.nav1 li a {
+    padding: 10px, 15px;
+    display: block;
+}
+
+.menu .nav1 ul li a:hover {
+    color: lightpink;
+}
+
+.nav1 > li {
+    float: left;
+}
+
+.nav1 li ul {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+
+.nav1 li:hover > ul {
+    display: block;
+}
+
+.nav1 li ul li{
+    position: relative;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label {
+    cursor: pointer;
+    display: none;
+}
+
+/* --- Contenedor Principal (Tarjeta) --- */
+.main {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: mostrar 1s ease-in-out;
+    
+}
+
+@keyframes mostrar {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Columna de Imagen --- */
+.main__figure {
+    background-color: #f8bbd0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.main__img {
+    width: 90%;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+/* --- Columna de Formulario --- */
+.main__contact {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.main__title {
+    font-size: 2rem;
+    color: black;
+    text-align: center;
+}
+
+.main__paragraph {
+    color: black;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.main__paragraph a{
+    margin: .3em 0;
+    text-decoration: none;
+    color:  black;
+    text-shadow: 0 0 10px white;
+}
+
+a:hover {
+    color: white;
+}
+
+/* --- Estructura Interna del Formulario --- */
+.main__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* SEPARACIÓN ENTRE BOTONES Y CAMPOS */
+}
+
+.main__input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    outline: none;
+}
+
+.main__input--textarea {
+    min-height: 80px;
+    resize: none;
+}
+
+/* Fila de edad y dni */
+.form-group-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* Contenedor de Imagen y Checkbox */
+
+.file-label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+/* Botón de Registro */
+.main__input--send {
+    background-color: #231a36;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.main__input--send:hover {
+    background-color: #3e325a;
+    letter-spacing: 1px;
+}
+
+/*footer*/
+.footer {
+    background-color: #ffe5f0;
+    padding: 10px 0;
+    
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.footer-content ul {
+    list-style: none;
+}
+
+.link h3 {
+    color: #f74780;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-decoration: none;
+}
+
+.link a {
+    color: black;
+    display:  block;
+    margin-bottom: 20px;
+    
+    text-decoration: none;
+
+}
+
+.link a:hover {
+    color: #f74780;
+}
+
+@media (max-width:991px) {
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+

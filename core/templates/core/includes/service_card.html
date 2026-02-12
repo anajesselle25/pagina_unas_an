@@ -1,22 +1,14 @@
 {% load static %}
 
 <div class="service-card">
-    <img src="{% static 'core/img/maquillaje2.jpeg' %}" alt="Maquillaje Basico">
-    <h3>Maquillaje Basico.</h3>
-    <p>Maquillaje basico para eventos.</p>
-    <p class="precio">$15</p>
-</div>
-
-<div class="service-card">
-    <img src="{% static 'core/img/maquillaje4.jpeg' %}" alt="Maquillaje Profesional">
-    <h3>Maquillaje Para Bodas.</h3>
-    <p>Maquillaje para boda, quedaras radiante e intacto para tu dia especial.</p>
-    <p class="precio">$25</p>
-</div>
-
-<div class="service-card">
-    <img src="{% static 'core/img/maquillaje1.jpeg' %}" alt="Maquillaje para Graduacion.">
-    <h3>Maquillaje para Graduaciones.</h3>
-    <p>Te dejaremos hermosas para un dia tan especial.</p>
-    <p class="precio">$25</p>
+    {% if s.image %}
+        <img src="{{ s.image.url }} " alt="Imagen de {{ s.name }}">
+    {% else %}
+        <p> Imagen no disponible. </p>
+    {% endif %}
+    <h3> {{ s.name}} </h3>
+    <p> {{ s.description }}</p>
+    <p class="precio"> ${{ s.price }}</p>
+    <a href="{% url 'service_update' id=s.id %}" class="button-update">Actualizar</a>
+    <a href="{% url 'service_delete' id=s.id %}" class="button-delete">Eliminar</a>
 </div>
