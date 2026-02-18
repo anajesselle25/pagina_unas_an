@@ -71,7 +71,7 @@ class Service(models.Model):
         verbose_name_plural = 'Servicios'
         
     def __str__(self):
-        return f"El servicio de {self.service.name} tiene un precio  de {self.service.price} "
+        return f"El servicio de {self.name} tiene un precio  de {self.price} "
     
     def delete(self, *args, **kwargs):
         if self.image:
@@ -94,7 +94,7 @@ class Reservation(models.Model):
         verbose_name_plural = 'Reservaciones'       
 
     def __str__(self):
-        return f"Reservación #{self.id} - {self.user.first_name} {self.user.last_name}"
+        return f"Reservación #{self.id} - {self.user.first_name} {self.user.last_name} - {self.total_price}"
 
 
 #-------------------------------------------------------------------
@@ -102,8 +102,8 @@ class Reservation(models.Model):
 #-------------------------------------------------------------------
 
 class ServiceReservation(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    reservation = models.ForeignKey(Reservation, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT,related_name='services')
+    reservation = models.ForeignKey(Reservation, on_delete=models.PROTECT,related_name='services')
 
     class Meta:
         db_table = 'service_reservations'

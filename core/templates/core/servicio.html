@@ -24,18 +24,29 @@
             <form class="main__form" method="POST" enctype="multipart/form-data" action="{% url 'service_create' %}">
                 {% csrf_token %}
 
-                <input type="text" name="name" placeholder="Nombre del servicio: " class="main__input" required>
+                <input type="text" name="name" placeholder="Nombre del servicio: " class="main__input">
+                {% if errors.name %}
+                    <p style= "color: red;">{{ errors.name}} </p>
+                {% endif %}
                 <textarea name="description" placeholder="Descripcion del servicio:" class="main__input" required></textarea>
-                <input type="text" id="price" name="price" placeholder="Precio" class="main__input" required>
+                <input type="text" id="price" name="price" placeholder="Precio" class="main__input">
+                {% if errors.price %}
+                    <p style= "color: red;">{{ errors.price}} </p>
+                {% endif %}
+                <input type="file" name="image" id="image" class="main__input">
+                {% if errors.image %}
+                    <p style= "color: red;">{{ errors.image}} </p>
+                {% endif %}
 
-                <input type="file" name="image" id="image" class="main__input" required>
-
-                <select id="service_type" name="service_type" class="main__input" required>
+                <select id="service_type" name="service_type" class="main__input">
                     {% for service_type_obj in service_types %}
                         <option value="{{ service_type_obj.id }}" {% if service_type_obj.id == service_type_id|add:"0" %}
                         selected{% endif %}>{{ service_type_obj }}</option>
                     {% endfor %}
                 </select>
+                {% if errors.service_type %}
+                    <p style= "color: red;">{{ errors.service_type}} </p>
+                {% endif %}
 
                 <input type="submit" value="Registrar servicio" class="main_input main_input--send">
             </form>

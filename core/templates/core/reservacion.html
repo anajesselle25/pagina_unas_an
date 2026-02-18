@@ -8,49 +8,30 @@
 
 {% block content %}
 
-<form method="post" action="{% url 'service_create' %}">
+<form method="post" action="{% url 'reservacion' %}">
+    {% csrf_token %}
     <fieldset>
-    {% crsf_token %}
     <div id="reservacion" class="page">
         <div class="reservacion-from">
             <h2>Agendar cita</h2>
 
             <div class="form-group">
-                <label for="service-type" required>Tipo de Servicio</label>
-                <select name="service-type" id="service-type">
-                    <option value="">Selecciona un Tipo de Servicio</option>
-                    <option value="Manicura">Manicura</option>
-                    <option value="Manicura">Pedicure</option>
-                    <option value="Manicura">Maquillaje</option>
-                <!-- <button type="submit" class="submit-btn1">Manicura</button>
-                <button type="submit" class="submit-btn1">Pedicure</button>
-                <button type="submit" class="submit-btn1">Maquillaje</button> -->
+                <label for="services">Selecciona los Servicios:</label>
+                <select id="services" name="services" multiple required>
+                    {% for service in services %}
+                        <option value="{{service.id}}">{{ service.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="service">Servicio</label>
-                <select id="service" name="service" required>
-                    <option value="">Selecciona un servicio</option>
-                    <option value="manicura-clasica">Manicura Clásica</option>
-                    <option value="manicura-gel">Manicura en Gel</option>
-                    <option value="manicure-jellytips">Uñas Jelly Tips</option>
-                    <option value="unas-acrilicas">Uñas Acrílicas</option>
-                    <option value="unas-poligel">Uñas en Poligel</option>
-                    <option value="pedicura-spa">Pedicura Clasica</option>
-                    <option value="pedicura-semipermanente">Pedicura Semipermanente</option>
-                    <option value="nail-art">Maquillaje Profesional</option>
-                </select>
+                <label for="reservation_date">Fecha Preferida</label>
+                <input type="date" id="reservation_date" name="reservation_date" required>
             </div>
 
             <div class="form-group">
-                <label for="date">Fecha Preferida</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-
-            <div class="form-group">
-                <label for="time">Hora Preferida</label>
-                <input type="time" id="time" name="time" required>
+                <label for="reservation_time">Hora Preferida</label>
+                <input type="time" id="reservation_time" name="reservation_time" required>
             </div>
 
             <dialog id="modal">

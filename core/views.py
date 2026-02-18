@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Service, ServiceType
+from .models import Service, ServiceType, Reservation, ServiceReservation
 from django.views import View
+from django.db.models import Sum
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -14,9 +16,6 @@ def login(request):
 
 def registro(request):
     return render(request, 'core/registro.html')
-
-def reservacion(request):
-    return render(request, 'core/reservacion.html')
 
 
 class ServiceCreateView(View):
@@ -34,6 +33,26 @@ class ServiceCreateView(View):
         service = ServiceType.objects.filter(id=service_type_id).first() if service_type_id else None
         image_file = request.FILES.get('image')
         image = image_file
+        errors = {} #diccionario para errores por campo
+
+        if not name:
+            errors['name'] = "El nombre es requerido"
+
+        if not service:
+            errors['service'] = "El servicio es requerido"
+
+        if not price:
+            errors['price'] = "El precio es requerido"
+
+        if not image:
+            errors['image'] = "La imagen es requerida"
+
+        if errors:
+            service_types = ServiceType.objects.all()
+            return render( request, self.template_name, {
+                'service_types': service_types,
+                'errors': errors,
+            })
 
         new_service = Service.objects.create(
             name=name,
@@ -43,7 +62,7 @@ class ServiceCreateView(View):
             image=image
             
         )
-        return redirect('index1')
+        return redirect('maquillaje')
     
 
 class ServiceListView(View):
@@ -105,3 +124,51 @@ class ServiceDeleteView(View):
         service.delete()
         #redirige a la lista de servicios despues de la eliminacion
         return redirect('maquillaje')
+    
+class ReservationCreateView(View):
+    template_name = 'core/reservacion.html'
+
+    def get(self, request, *args, **kwargs):
+        services = Service.objects.all()
+        return render(request, self.template_name, {'services' : services})
+    
+    def post(self, request, *args, **kwargs):
+
+        current_user = request.user
+
+        reservation_date= request.POST.get("reservation_date")
+        reservation_time=request.POST.get("reservation_time")
+
+        selected_services_ids = request.POST.getlist('services')
+
+        selected_services =Service.objects.filter(id__in=selected_services_ids)
+
+        print(selected_services)
+
+        total_price = selected_services.aggregate(Sum('price'))['price__sum'] or 0
+        print(total_price)
+
+
+        new_reservation = Reservation.objects.create(
+            reservation_date = reservation_date,
+            reservation_time = reservation_time,
+            total_price= total_price,
+            user= current_user
+        )
+
+        for service in selected_services:
+            ServiceReservation.objects.create(
+                reservation=new_reservation,
+                service=service
+            )
+        
+        return redirect('reservacion_success', reservation_id=new_reservation.id)
+
+class ReservationSuccessView(View):
+    # template_name = 'core/reservacion.html'
+
+    def get(self, request,reservation_id, *args, **kwargs):
+        reservation = Reservation.objects.get(id=reservation_id)
+        return HttpResponse(reservation)
+        # return render(request, self.template_name, {'reservations' : reservation})
+
