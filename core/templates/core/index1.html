@@ -11,18 +11,34 @@
 {% block content %}
     <div id="services" class="page"> 
         <h1>Manicure y Pedicure</h1>
-        {% if services %}
-            {% for s in services %}
-            <a href=" {% url 'service_detail' id=s.id %}">
-                {% include "core/includes/service_card1.html" %}</a>
-            {% endfor %}
 
-        {% else %}
-            <p> No hay servicios disponibles. </p>
-        {% endif %}
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="{% static 'core/img/clasica.jpeg' %}" alt="Manicura Clasica">
+                <h3>Manicura Clasica</h3>
+                <p>Limado, pulido, cuticula y esmalte tradicional. Incluye hidratacion en manos y masajes relajantes.</p>
+                <p class="precio">$15</p>
+        </div>
 
-        <p>
-            <a href=" {% url 'service_create' %}">Crear Servicios </a>
-        </p>
+        <div class="service-card">
+            <img src="{% static 'core/img/gel.jpeg' %}" alt="Manicura Gel.">
+            <h3>Manicura en Gel</h3>
+            <p>Esmaltado semipermanente, que dura hasta 3 semanas. Acabado brillante y resistente a golpes.</p>
+            <p class="precio">$25</p>
+        </div>
+
+        <div class="service-card">
+            <img src="{% static 'core/img/acrilicas.jpeg' %}" alt="Manicura Acrilicas">
+            <h3>Uñas Acrilicas</h3>
+            <p>Extensiones y esculpido de uñas con acrilico. Diseño personalizados segun tus preferencias.</p>
+            <p class="precio">$30</p>
+        </div>
+
+        <div class="service-card">
+            <img src="{% static 'core/img/pedicure.jpeg' %}" alt="Pedicura">
+            <h3>Pedicure</h3>
+            <p>Incluye esmaltado semipermanente y masaje.</p>
+            <p class="precio">$15</p>
+        </div>
     </div>
 {% endblock %}
