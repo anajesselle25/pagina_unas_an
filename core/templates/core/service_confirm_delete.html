@@ -1,6 +1,11 @@
 {% extends "core/base.html" %}
 {% load static %}
 
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/delete.css' %}">
+    {{ block.super }}
+{% endblock css_styles %}
+
 {% block title %} Eliminar un Servicio {% endblock %}
 
 {% block content %}
@@ -11,7 +16,7 @@
         <form method="post" action="{% url 'service_delete' id=service.id %}">
             {% csrf_token %}
             <button type="submit" class="button-delete">Si, eliminar</button>
-            <a href="{% url 'service_detail' id=service.id %}">No, cancelar</a>
+            <a href="{% url 'service_detail' id=service.id %}" class= "button-cancel">No, cancelar</a>
         </form>
     </section>
 {% endblock %}

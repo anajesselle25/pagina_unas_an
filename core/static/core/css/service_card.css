@@ -1,0 +1,38 @@
+.service_card {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.button-update {
+    background-color: white;
+    color: #e91e8c;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #e91e8c;
+    transition: all 0.3s;
+}
+
+.button-update:hover {
+    background-color: #e91e8c;
+    color: white;
+}
+
+.button-delete {
+    background-color: white;
+    color: #e91e8c;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #e91e8c;
+    transition: all 0.3s;
+}
+
+.button-delete:hover {
+    background-color: #e91e8c;
+    color: white;
+}

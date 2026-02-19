@@ -26,7 +26,8 @@
 
             <div class="form-group">
                 <label for="reservation_date">Fecha Preferida</label>
-                <input type="date" id="reservation_date" name="reservation_date" required>
+                <input type="date" id="reservation_date" name="reservation_date" 
+                    min= "{{ today }}" required>
             </div>
 
             <div class="form-group">

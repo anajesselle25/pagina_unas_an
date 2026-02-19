@@ -3,6 +3,7 @@ from .models import Service, ServiceType, Reservation, ServiceReservation
 from django.views import View
 from django.db.models import Sum
 from django.http import HttpResponse
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -16,7 +17,6 @@ def login(request):
 
 def registro(request):
     return render(request, 'core/registro.html')
-
 
 class ServiceCreateView(View):
     template_name = 'core/servicio.html'
@@ -130,7 +130,10 @@ class ReservationCreateView(View):
 
     def get(self, request, *args, **kwargs):
         services = Service.objects.all()
-        return render(request, self.template_name, {'services' : services})
+        today= date.today().strftime('%Y-%m-%d')
+        return render(request, self.template_name, {
+            'services' : services, 'today': today
+        })
     
     def post(self, request, *args, **kwargs):
 
