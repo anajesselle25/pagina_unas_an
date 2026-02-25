@@ -15,107 +15,16 @@ img {
     max-width: 100%;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.header1 {
-    display: flex;
-    align-items: center;
-    background-color: lightcoral;
-    padding: 70px 0 0 0; 
-}
-
-.menu img{
-    width: 200px;
-}
-
-.menu{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f74780;
-}
-
-.logo { 
-    font-size: 25px;
-    color: black;
-    text-transform: uppercase;
-    font-weight: 800 ;
-}
-ul ol {
-    list-style: none;
-}
-
-.nav1 ul li {
-    position: relative;
-    float: left;
-    padding: 10px, 15px;
-    display: block;
-    background-color: #f74780;
-}
-
-.menu .nav1 ul li a {
-    font-size: 20px;
-    padding: 20px;
-    color: black;
-    display: block;
-}
-
-.nav1 li a {
-    padding: 10px, 15px;
-    display: block;
-}
-
-.menu .nav1 ul li a:hover {
-    color: lightpink;
-}
-
-.nav1 > li {
-    float: left;
-}
-
-.nav1 li ul {
-    display: none;
-    position: absolute;
-    min-width: 140px;
-}
-
-.nav1 li:hover > ul {
-    display: block;
-}
-
-.nav1 li ul li{
-    position: relative;
-}
-
-#menu{
-    display: none;
-}
-
-.menu-icono{
-    width: 25px;
-}
-
-.menu label {
-    cursor: pointer;
-    display: none;
-}
-
 h1{
     color: #f74780;
     text-align: center;
     font-size: 35px;
+    padding: 10px;
 }
 
 .service-card {
     background: #fff;
-    padding: 30px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 6px 25px rgba(255, 105, 180, 0.2);
     transition: transform 0.3s ease;
@@ -131,7 +40,7 @@ h1{
     height: 200px;
     object-fit: cover;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .service-card h3 {
@@ -153,36 +62,125 @@ h1{
     font-weight: bold;
 }
 
-.button-create {
-    background-color: white;
-    color: #e91e8c;
-    padding: 8px 20px;
-    border-radius: 20px;
+/*---- Contenedor general ---- */
+.search-bar-row {
+    padding: 5px 15px;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ---- Fila: form izquierda + botón derecha ---- */
+.search-bar-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ---- Formulario de búsqueda ---- */
+.search-form {
+    flex: 1;
+}
+
+.search-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Input de texto */
+.search-input {
+    flex: 1;
+    min-width: 180px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1.5px solid #fda4d0;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #6b2d50;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.search-input::placeholder {
+    color: #f9a8d4;
+}
+
+.search-input:focus {
+    border-color: #ec4899;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+
+/* Select */
+.main__input {
+    height: 42px;
+    padding: 0 14px;
+    border: 1.5px solid #fda4d0;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #6b2d50;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.main__input:focus {
+    border-color: #ec4899;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+
+/* Botón Buscar */
+.search-btn {
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.45);
+}
+
+/* ---- Botón Crear Servicio (esquina derecha) ---- */
+.btn-create {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 50px;
+    background: #fff;
+    border: 2px solid #ec4899;
+    color: #ec4899;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
     text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #e91e8c;
-    transition: all 0.3s;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.15);
 }
 
-.button-create:hover {
-    background-color: #e91e8c;
-    color: white;
-}
-
-.button-return {
-    background-color: white;
-    color: #e91e8c;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #e91e8c;
-    transition: all 0.3s;
-}
-
-.button-return:hover {
-    background-color: #e91e8c;
-    color: white;
+.btn-create:hover {
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.4);
 }
 
 #btn-arriba {
@@ -231,4 +229,61 @@ body::after {
         from { opacity: 0; transform: scale(0) translateY(50px); }
         to   { opacity: 1; transform: scale(1) translateY(0); }
     }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.step-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Botones Anterior / Siguiente / Primera / Última */
+.pag-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ec4899;
+    background: #fff;
+    border: 1.5px solid #fda4d0;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.pag-btn:hover {
+    background: linear-gradient(135deg, #f9a8d4, #ec4899);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Texto "Página X de Y" */
+.step-links .current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
 }

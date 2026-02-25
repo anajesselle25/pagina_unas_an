@@ -14,6 +14,7 @@ class Command(BaseCommand):
         service_types = [
             {'name': 'Manicure'},
             {'name': 'Pedicure'},
+            {'name': 'Maquillaje'}
         ]
         for service_type in service_types:
             service_type, created = ServiceType.objects.get_or_create(**service_type)

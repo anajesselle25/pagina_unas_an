@@ -1,9 +1,13 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Service, ServiceType, Reservation, ServiceReservation
 from django.views import View
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.http import HttpResponse
 from datetime import date
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm
+
 
 # Create your views here.
 def index(request):
@@ -63,15 +67,50 @@ class ServiceCreateView(View):
             
         )
         return redirect('maquillaje')
-    
+
 
 class ServiceListView(View):
     template_name = 'core/maquillaje.html'
+    paginate_by = 2
 
     def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
+        service_type =request.GET.get('service_type')
         services = Service.objects.all()
-        return render(request, self.template_name, {'services': services})
+
+        if query:
+            services = services.filter(
+                Q(name__icontains=query)  |
+                Q(description__icontains=query)   |
+                Q(price__icontains=query)
+            ).distinct()
+        
+        if service_type:
+            services = services.filter(
+                Q(service_type__id__icontains=service_type)
+            )
+            
+
+        paginator = Paginator(services, self.paginate_by)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        query_dict=request.GET.copy()
+        if 'page' in query_dict:
+            del query_dict['page']
+        url_params=query_dict.urlencode()
+
+        context = {
+            'page_obj': page_obj,
+            'services' : page_obj.object_list,
+            'query' : query,
+            'service_types': ServiceType.objects.all(),
+            'service_type': ServiceType.objects.filter(id=service_type).first() if service_type else None, 
+            'url_params': url_params
+        }
+        return render(request, self.template_name, context)
     
+
 class ServiceDetailView(View):
     template_name = 'core/service_detail.html'
 
@@ -175,3 +214,27 @@ class ReservationSuccessView(View):
         return HttpResponse(reservation)
         # return render(request, self.template_name, {'reservations' : reservation})
 
+class UserLoginView(View):
+    template_name = 'core/login.html'
+
+    def get(self, request, *args, **kwargs):
+        form = LoginForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_date['password']
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('maquillaje')
+            else:
+                return render(request, self.template_name, {
+                    'form': form,
+                    'error_message': 'Nombre de Usuario o Contraseña Incorrectos.'
+                })
+        return render(request, self.template_name, {'form': form})

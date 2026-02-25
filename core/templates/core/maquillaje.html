@@ -9,8 +9,34 @@
 {% block title %}Maquillaje Profesional{% endblock %}
 
 {% block content %}
+    <div class="search-bar-row">
+        <form method="GET" action="{% url 'maquillaje' %}" class="search-form">
+            <div class-"search-inputs">
+                <input type="text" name="q" placeholder=" 🔍Buscar servicios ...."
+                value="{{ query|default_if_none:'' }}" class="search-input">
+
+                <select id="service_type" name="service_type" class="main__input">
+                    <option value=""> --Seleccione un tipo de Servicio --</option>
+                    {% for service_type_obj in service_types %}
+                        <option value="{{ service_type_obj.id }}" {% if service_type_obj.id == service_type_id|add:"0" %}
+                        selected{% endif %}>{{ service_type_obj.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="search-btn">Buscar</button>
+            </div>
+        </form>
+
+        <a href="{% url 'service_create' %}" class="btn-create"> ✦ Crear Servicio</a>
+
+    </div>
+
     <div id="services" class="page"> 
-        <h1>Maquillaje Profesional</h1>
+        {% if service_type %}
+            <h1>{{service_type.name}}</h1>
+        {% else %}
+            <h1>Servicios Disponibles.</h1>
+        {% endif %}
         {% if services %}
             {% for s in services %}
             <a href=" {% url 'service_detail' id=s.id %}">
@@ -20,10 +46,24 @@
         {% else %}
             <p> No hay servicios disponibles. </p>
         {% endif %}
-
-        <p>
-            <a href=" {% url 'service_create' %}" class="button-create">Crear Servicios </a>
-        </p>
         
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }} 
+                {% if query %}&q={{ query }}{% endif %}" class="pag-btn nav">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }} 
+                {% if url_params %}&{{ url_params }}{% endif %}" class="pag-btn nav">Siguiente</a>
+            {% endif %}
+        </span>
     </div>
 {% endblock %}

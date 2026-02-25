@@ -19,10 +19,64 @@
 .button-update:hover {
     background-color: #e91e8c;
     color: white;
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
 }
 
+.modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(10px); /* BORROSO */
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.modal-overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: pink;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 400px;
+    color: black; /* Para que el texto sea legible */
+}
+
+/* Contenedor de los botones para alinearlos */
+.modal-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espacio entre los botones */
+}
+
+/* Estilo general para ambos botones */
+.button-delete, .button-cancel {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; /* Quita el subrayado al link de cancelar */
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-block;
+}
+
+/* BOTÓN ELIMINAR (Acción destructiva) */
 .button-delete {
-    background-color: white;
+    background-color: white; 
     color: #e91e8c;
     padding: 8px 20px;
     border-radius: 20px;
@@ -35,4 +89,28 @@
 .button-delete:hover {
     background-color: #e91e8c;
     color: white;
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
+}
+
+/* BOTÓN CANCELAR (Acción neutral) */
+.button-cancel {
+    background-color: white;
+    color: #e91e8c;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #e91e8c;
+    transition: all 0.3s;
+}
+
+.button-cancel:hover {
+    background-color: #e91e8c;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Efecto al presionar (click) */
+.button-delete:active, .button-cancel:active {
+    transform: translateY(0);
 }
