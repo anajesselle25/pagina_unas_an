@@ -5,8 +5,9 @@ from django.db.models import Sum, Q
 from django.http import HttpResponse
 from datetime import date
 from django.core.paginator import Paginator
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from django.contrib.auth import authenticate, login, get_user_model, logout
+from .forms import LoginForm, RegisterForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -16,17 +17,13 @@ def index(request):
 def index1(request):
     return render(request, 'core/index1.html')
 
-def login(request):
-    return render(request, 'core/login.html')
-
-def registro(request):
-    return render(request, 'core/registro.html')
-
-class ServiceCreateView(View):
+class ServiceCreateView(LoginRequiredMixin,View):
     template_name = 'core/servicio.html'
 
     def get(self, request, *args, **kwargs):
         service_types = ServiceType.objects.all()
+        if request.user.is_authenticated:
+            return redirect('login')
         return render(request, self.template_name, {'service_types' : service_types})
     
     def post(self, request, *args, **kwargs):
@@ -86,10 +83,7 @@ class ServiceListView(View):
             ).distinct()
         
         if service_type:
-            services = services.filter(
-                Q(service_type__id__icontains=service_type)
-            )
-            
+            services = services.filter(service_type__id=service_type)
 
         paginator = Paginator(services, self.paginate_by)
         page_number = request.GET.get('page')
@@ -164,7 +158,7 @@ class ServiceDeleteView(View):
         #redirige a la lista de servicios despues de la eliminacion
         return redirect('maquillaje')
     
-class ReservationCreateView(View):
+class ReservationCreateView(LoginRequiredMixin,View):
     template_name = 'core/reservacion.html'
 
     def get(self, request, *args, **kwargs):
@@ -219,13 +213,15 @@ class UserLoginView(View):
 
     def get(self, request, *args, **kwargs):
         form = LoginForm()
+        if request.user.is_authenticated:
+            return redirect('maquillaje')
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            password = form.cleaned_date['password']
+            password = form.cleaned_data['password']
 
             user = authenticate(request, username=username, password=password)
 
@@ -238,3 +234,36 @@ class UserLoginView(View):
                     'error_message': 'Nombre de Usuario o Contraseña Incorrectos.'
                 })
         return render(request, self.template_name, {'form': form})
+    
+
+class UserRegisterView(View):
+    template_name = 'core/registro.html'
+
+    def get(self, request, *args, **kwargs):
+        form = RegisterForm()
+        if request.user.is_authenticated:
+            return redirect('maquillaje')
+        return render(request, self.template_name, {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            User = get_user_model()
+            user = User.objects.create_user(username=username, email=email, password=password)
+
+            login(request, user)
+
+            return redirect('maquillaje')
+        
+        return render(request, self.template_name, {'form': form})
+    
+class UserLogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+
+        return redirect('login')
+    

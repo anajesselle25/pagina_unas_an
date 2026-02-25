@@ -22,9 +22,17 @@
                     </li>
                     <li><a href="">Reservaciones</a>
                     <ul>
-                        <li><a href="{% url 'login' %}">Solicitar Cita</a></li>
+                        <li><a href="{% url 'reservacion' %}">Solicitar Cita</a></li>
                     </ul>
                     </li>
+
+                    <div class="user-auth">
+                        {% if user.is_authenticated %}
+                        <p>✦Bienvenida, {{ user.username }}! <a href="{% url 'logout' %}" class="btn-cerrar-sesion">Cerrar sesión</a></p>
+                        {% else %}
+                        <p><a href="{% url 'login' %}" class="btn-iniciar-sesion">Iniciar sesión</a> o <a href="{% url 'registro' %}" class="btn-iniciar-sesion">registrarse</a></p>
+                        {% endif %}
+                    </div>
                 </ul>
             </nav>
         </div>

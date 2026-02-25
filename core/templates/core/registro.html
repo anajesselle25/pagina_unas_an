@@ -22,16 +22,31 @@
             <h2 class="main__title">¡Bienvenido!</h2>
             <p class="main__paragraph">¡Registrate aqui!</p>
 
-            <form class="main__form">
+            <form  method="post" action="{% url 'registro' %}" class="main__form">
+                {% csrf_token %}
 
-                <input type="text" name="usuario" placeholder="Ingrese Nombre de Usuario" class="main__input">
+                {{ form.username }}
 
-                <input type="email" required placeholder="Ingrese Correo Electronico" class="main__input">
+                {{ form.email }}
 
-                <input type="password"  name="clave" required minlength="8" pattern="^(?=.*\d).{8,}$"
-                placeholder="Contraseña" title="Minimo 8 caracteres con 1 numero" class="main__input">
+                {{ form.password }}
 
-                <input type="submit" value="Iniciar Sesion" class="main__input main__input--send">
+                {{ form.password_confirm }}
+
+                {% if form.errors %}
+                    <ul style="color : red;">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <button type="submit" class="main__input main__input--send">Registrarme</button>
 
             </form>
             <p>¿Ya estas registrado?</p>

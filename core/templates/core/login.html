@@ -21,13 +21,16 @@
             <h2 class="main__title">¡Hola de nuevo!</h2>
             <p class="main__paragraph">¡Bienvenidas cuanto tiempo!</p>
 
-            <form class="main__form">
+            <form method="post" action="{% url 'login' %}" class="main__form">
+                {% csrf_token %}
 
                 {{ form.username }}
 
                 {{ form.password}}
-
-                <input type="submit" value="Iniciar Sesion" class="main__input main__input--send">
+                {% if error_message %}
+                    <p style="color: red;">{{ error_message}}</p>
+                {% endif %}
+                <button type="submit" class="main__input main__input--send">Iniciar Sesion</button>
 
             </form>
             <p> ¿Es la primera vez que estas aqui?</p>

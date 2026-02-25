@@ -109,6 +109,25 @@ ul ol {
     display: none;
 } 
 
+.btn-iniciar-sesion {
+    color: black;
+    padding: 0 3px;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+/* Sección de autenticación de usuario */
+.user-auth {
+    font-size: 1rem;
+}
+
+.btn-cerrar-sesion {
+    color: black;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 
 /*footer*/
 .footer {

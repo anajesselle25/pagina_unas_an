@@ -264,3 +264,5 @@ JAZZMIN_SETTINGS = {
 #     # Add a language dropdown into the admin
 #     "language_chooser": True,
 }
+
+LOGIN_URL = '/login/'
