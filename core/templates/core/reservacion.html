@@ -1,5 +1,5 @@
 {% extends "core/base.html" %}
-{% load static%}
+{% load static %}
 
 {% block css_styles %}
     <link rel="stylesheet" href="{% static 'core/css/reservacion.css' %}">
@@ -19,7 +19,7 @@
                 <label for="services">Selecciona los Servicios:</label>
                 <select id="services" name="services" multiple required>
                     {% for service in services %}
-                        <option value="{{service.id}}">{{ service.name }}</option>
+                        <option value="{{service.id}}">{{ service.name }} - ${{ service.price }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -35,16 +35,7 @@
                 <input type="time" id="reservation_time" name="reservation_time" required>
             </div>
 
-            <dialog id="modal">
-                <p>Su cita fue agendada con exito</p>
-                <p>Fecha: </p>
-                <p>Hora: </p>
-                <form method="dialog">
-                    <button>Salir</button>
-                </form>
-            </dialog>
-
-            <button onclick="document.getElementById('modal').showModal()" type="submit" class="submit-btn">Reservar Cita</button>
+            <button type="submit" class="submit-btn">Reservar Cita</button>
 </form>
         </div>
     </div>

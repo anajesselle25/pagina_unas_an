@@ -5,6 +5,24 @@
     margin-top: 15px;
 }
 
+.button-reservation {
+    background-color: white;
+    color: #e91e8c;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #e91e8c;
+    transition: all 0.3s;
+}
+
+.button-reservation:hover {
+    background-color: #e91e8c;
+    color: white;
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
+}
+
+
 .button-update {
     background-color: white;
     color: #e91e8c;

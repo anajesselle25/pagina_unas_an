@@ -1,1 +1,12 @@
 {% extends 'core/base.html' %}
+% load static%}
+
+{% block content %}
+<p>Su cita fue agendada con exito</p>
+<p>Total: {{ reservation.total_price }} </p>
+
+<p>
+    <a href="{% url 'mis_reservaciones' %}" class=" button-return">Ver mis reservaciones </a>
+</p>
+
+{% endblock content %}

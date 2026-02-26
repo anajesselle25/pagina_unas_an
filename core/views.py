@@ -150,13 +150,20 @@ class ServiceDeleteView(View):
 
     def get(self, request, id, *args, **kwargs):
         service = get_object_or_404(Service, id=id)
+
         return render(request, self.template_name, {'service': service})
     
     def post(self, request, id, *args, **kwargs):
-        service = get_object_or_404(Service, id=id)
-        service.delete()
+        try:
+            service = get_object_or_404(Service, id=id)
+            service.delete()
         #redirige a la lista de servicios despues de la eliminacion
-        return redirect('maquillaje')
+            return redirect('maquillaje')
+        except Exception as e:
+            return HttpResponse("No se puede eliminar el servicio")
+
+
+
     
 class ReservationCreateView(LoginRequiredMixin,View):
     template_name = 'core/reservacion.html'
@@ -198,7 +205,7 @@ class ReservationCreateView(LoginRequiredMixin,View):
                 service=service
             )
         
-        return redirect('reservacion_success', reservation_id=new_reservation.id)
+        return render(request, 'core/reservacion_success.html', {'reservation':new_reservation})
 
 class ReservationSuccessView(View):
     # template_name = 'core/reservacion.html'
@@ -267,3 +274,77 @@ class UserLogoutView(View):
 
         return redirect('login')
     
+
+class ReservationListView(View):
+    template_name = 'core/mis_reservaciones.html'
+    paginate_by = 3 
+
+    def get(self,request, *args, **kwargs):
+        query = request.GET.get('q')
+        current_user = request.user
+        reservations = Reservation.objects.filter(user=current_user)
+
+        if query:
+            reservations = reservations.filter(total_price=query)
+
+        paginator = Paginator(reservations, self.paginate_by)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'page_obj': page_obj,
+            'reservations' : page_obj.object_list,
+            'query' : query,
+        }
+
+        return render(request, self.template_name, context )
+    
+class ReservationListAdminView(View):
+    template_name = 'core/reservaciones.html'
+    paginate_by = 3 
+
+    def get(self,request, *args, **kwargs):
+        query = request.GET.get('q')
+        reservations = Reservation.objects.all()
+
+        if  query:
+            reservations = reservations.filter(
+                Q(user__username__icontains=query),
+                Q(total_price=query)
+            ).distinct()
+
+        paginator = Paginator(reservations, self.paginate_by)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'page_obj': page_obj,
+            'reservations' : page_obj.object_list,
+            'query' : query,
+        }
+
+        return render(request, self.template_name, context )
+    
+class ReservationDeleteView(View):
+    template_name = 'core/reservation_confirm_delete.html'
+
+    def get(self, request, id, *args, **kwargs):
+        reservation = get_object_or_404(Reservation, id=id)
+
+        return render(request, self.template_name, {'reservation': reservation})
+
+    def post(self, request, id, *args, **kwargs):
+        try:
+            reservation = get_object_or_404(Reservation, id=id)
+            reservation.delete()
+        #redirige a la lista de servicios despues de la eliminacion
+            return redirect('mis_reservaciones')
+        except Exception as e:
+            return HttpResponse("No se puede eliminar la reservacion")
+        
+class CompletedReservation(View):
+    def post(self, request, id, *args, **kwargs):
+        reservation = get_object_or_404(Reservation, id=id)
+        reservation.completed = True
+        reservation.save()
+        return redirect('mis_reservaciones')

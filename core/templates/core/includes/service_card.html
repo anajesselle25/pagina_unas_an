@@ -13,10 +13,14 @@
     <h3> {{ s.name }} </h3>
     <p> {{ s.description }}</p>
     <p class="precio"> ${{ s.price }}</p>
+
+    <a href="{% url 'reservacion' %}" class="button-reservation">Solicitar Cita</a>
+
+    {% if user.is_authenticated and user.is_staff %}
+        <a href="{% url 'service_update' id=s.id %}" class="button-update">Actualizar</a>
     
-    <a href="{% url 'service_update' id=s.id %}" class="button-update">Actualizar</a>
-    
-    <a href="#modal-{{ s.id }}" class="button-delete">Eliminar</a>
+        <a href="#modal-{{ s.id }}" class="button-delete">Eliminar</a>
+    {% endif %}
 
     {% include "core/service_confirm_delete.html" with s=s %}
 </div>

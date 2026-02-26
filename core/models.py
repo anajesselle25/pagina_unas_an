@@ -87,6 +87,7 @@ class Reservation(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     reservation_date = models.DateField()
     reservation_time = models.TimeField()
+    completed = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'reservations'
@@ -102,8 +103,8 @@ class Reservation(models.Model):
 #-------------------------------------------------------------------
 
 class ServiceReservation(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.PROTECT,related_name='services')
-    reservation = models.ForeignKey(Reservation, on_delete=models.PROTECT,related_name='services')
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'service_reservations'

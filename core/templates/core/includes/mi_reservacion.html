@@ -1,0 +1,31 @@
+{% load static %}
+
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/service_card.css' %}">
+{% endblock css_styles %}
+
+    <!-- Reservacion 1-->
+    <div class="service-card">
+        ${{ r.total_price }}
+        {{ r.reservation_date }}
+        {{ r.reservation_time }}
+
+    {% if not r.completed %}
+        <a href="#modal-{{ r.id }}" class="button-delete">Cancelar</a>
+        {% if user.is_authenticated and user.is_staff %}
+        <form method="POST" action="{% url 'reservacion_completada' id=r.id %}">
+            {% csrf_token %}
+            <button type="submit" class="search-btn">Completar</button>
+            
+        </form>
+        {% endif %}
+        {% else %}
+        <a><strong>Reservacion ya completada.</strong></a>
+    {% endif %}
+     {% if user.is_authenticated and user.is_staff %}
+        <a><strong>Usuario: {{ r.user.username }}</strong></a>
+    {% endif %}
+
+        {% include "core/reservation_confirm_delete.html" with r=r %}
+    </div>
+

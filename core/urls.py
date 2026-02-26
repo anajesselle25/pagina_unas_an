@@ -15,4 +15,8 @@ urlpatterns = [
     path('reservacion/', ReservationCreateView.as_view() , name='reservacion'),
     path('reservacion/success/<int:reservation_id>', ReservationSuccessView.as_view() , name='reservacion_success'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
+    path('mis-reservaciones/', ReservationListView.as_view(), name='mis_reservaciones'),
+    path('reservation/<int:id>/delete', ReservationDeleteView.as_view(), name='reservation_delete'),
+    path('completed-reservation/<int:id>', CompletedReservation.as_view(), name='reservacion_completada'),
+    path('reservaciones/',ReservationListAdminView.as_view(), name="reservaciones"),
 ]

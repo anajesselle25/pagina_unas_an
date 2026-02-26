@@ -16,7 +16,7 @@
                 value="{{ query|default_if_none:'' }}" class="search-input">
 
                 <select id="service_type" name="service_type" class="main__input">
-                    <option value=""> --Seleccione un tipo de Servicio --</option>
+                    <option value=""> -- Seleccione un tipo de Servicio --</option>
                     {% for service_type_obj in service_types %}
                         <option value="{{ service_type_obj.id }}" {% if service_type_obj.id == service_type_id|add:"0" %}
                         selected{% endif %}>{{ service_type_obj.name }}</option>
@@ -26,8 +26,9 @@
                 <button type="submit" class="search-btn">Buscar</button>
             </div>
         </form>
-
+        {% if user.is_authenticated and user.is_staff %}
         <a href="{% url 'service_create' %}" class="btn-create"> ✦ Crear Servicio</a>
+        {% endif %}
 
     </div>
 
@@ -53,7 +54,7 @@
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }} 
-                {% if query %}&q={{ query }}{% endif %}" class="pag-btn nav">Anterior</a>
+                {% if url_params %}&{{ url_params }}{% endif %}" class="pag-btn nav">Anterior</a>
             {% endif %}
 
             <span class="current">

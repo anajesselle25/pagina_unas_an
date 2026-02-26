@@ -54,9 +54,14 @@ ul ol {
     list-style: none;
 }
 
+.nav1 ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
 .nav1 ul li {
     position: relative;
-    float: left;
     padding: 10px, 15px;
     display: block;
     background-color: #f74780;
@@ -76,10 +81,6 @@ ul ol {
 
 .menu .nav1 ul li a:hover {
     color: lightpink;
-}
-
-.nav1 > li {
-    float: left;
 }
 
 .nav1 li ul {

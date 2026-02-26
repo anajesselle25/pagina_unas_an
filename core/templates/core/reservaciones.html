@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block css_styles %}
+    <link rel="stylesheet" href="{% static 'core/css/maquillaje.css' %}">
+    {{ block.super }}
+{% endblock css_styles %}
+{% block title %} Todas las Reservaciones{% endblock %} 
+{% block content %}
+
+    <div class="contenedor">
+    <form method="get" action="{% url 'reservaciones' %}"  class="search-form">
+        <input type="text" name="q" placeholder=" Buscar...."
+        value= "{{ query|default_if_none:'' }}">
+        <button type="submit" class="search-btn">Buscar</button>
+    </form>        
+
+    <section id="reservation" class="page">
+        <h2>Todas las Reservaciones</h2>
+
+    {% if reservations %}
+        <div class="page">
+            {% for r in reservations %}
+
+            {% include "core/includes/mi_reservacion.html" %}
+
+            {% endfor %}
+        </div>
+    {% else %}
+        <p> No hay reservaciones registradas.</p>
+    {% endif %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }} 
+                {% if url_params %}&{{ url_params }}{% endif %}" class="pag-btn nav">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }} 
+                {% if url_params %}&{{ url_params }}{% endif %}" class="pag-btn nav">Siguiente</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock  %}
