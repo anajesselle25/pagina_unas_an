@@ -1,0 +1,273 @@
+/* ============================================
+LAYOUT GENERAL — todo en columna, centrado
+   ============================================ */
+.search-bar-row,
+#reservation,
+.pagination {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+BARRA DE BÚSQUEDA
+   ============================================ */
+.search-bar-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+/* ---- Formulario de búsqueda ---- */
+.search-form {
+    flex: 1;
+}
+
+.search-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Input de texto */
+.search-input {
+    flex: 1;
+    min-width: 180px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1.5px solid #fda4d0;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #6b2d50;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.search-input::placeholder {
+    color: #f9a8d4;
+}
+
+.search-input:focus {
+    border-color: #ec4899;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+
+/* Botón Buscar */
+.search-btn {
+    height: 42px;
+    padding: 0 22px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.45);
+}
+
+/* ============================================
+SECCIÓN RESERVACIONES
+============================================ */
+#reservation {
+    padding: 0 16px;
+    margin-bottom: 10px;
+}
+
+#reservation h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--texto-oscuro);
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+#reservation h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--rosa-fuerte), var(--rosa-medio));
+    border-radius: 2px;
+}
+
+#reservation p {
+    color: var(--texto-gris);
+    font-size: 1rem;
+    padding: 20px 0;
+}
+
+/* ============================================
+TARJETAS — div.page (contenedor)
+============================================ */
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.page > * {
+    background: var(--blanco);
+    border-radius: 30px;
+    box-shadow: var(--sombra);
+    padding: 20px 24px;
+    border-left: 5px solid var(--rosa-fuerte);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.page > *:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(233,30,140,0.16);
+}
+
+/* ============================================
+BOTONES CANCELAR / COMPLETAR — lado a lado
+============================================ */
+.page a,
+.page button,
+.page input[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    border: 2px solid transparent;
+    margin-right: 8px;
+    margin-bottom: 6px;
+}
+
+/* Botón Cancelar */
+.btn-cancelar, a.cancelar, button.cancelar {
+    background: var(--blanco) !important;
+    color: var(--rosa-fuerte) !important;
+    border: 2px solid var(--rosa-medio) !important;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cancelar:hover, a.cancelar:hover { background: var(--rosa-claro) !important; }
+
+/* Botón Completar */
+.btn-completar, a.completar, button.completar {
+    background: var(--rosa-fuerte) !important;
+    color: var(--blanco) !important;
+    border: 2px solid var(--rosa-fuerte) !important;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-completar:hover, a.completar:hover {
+    background: #C2185B !important;
+    border-color: #C2185B !important;
+}
+
+/* Botón Eliminar */
+.btn-eliminar, a.eliminar, button.eliminar {
+    background: #E53935 !important;
+    color: var(--blanco) !important;
+    border: 2px solid #E53935 !important;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-eliminar:hover, a.eliminar:hover {
+    background: #B71C1C !important;
+    border-color: #B71C1C !important;
+    }
+
+/* ============================================
+PAGINACIÓN
+============================================ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.step-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Botones Anterior / Siguiente */
+.pag-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ec4899;
+    background: #fff;
+    border: 1.5px solid #fda4d0;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.pag-btn:hover {
+    background: linear-gradient(135deg, #f9a8d4, #ec4899);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Texto "Página X de Y" */
+.step-links .current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+}

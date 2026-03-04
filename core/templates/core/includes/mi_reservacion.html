@@ -4,28 +4,38 @@
     <link rel="stylesheet" href="{% static 'core/css/service_card.css' %}">
 {% endblock css_styles %}
 
-    <!-- Reservacion 1-->
-    <div class="service-card">
-        ${{ r.total_price }}
-        {{ r.reservation_date }}
-        {{ r.reservation_time }}
+<!-- Reservacion -->
+<div class="service-card">
 
-    {% if not r.completed %}
-        <a href="#modal-{{ r.id }}" class="button-delete">Cancelar</a>
-        {% if user.is_authenticated and user.is_staff %}
-        <form method="POST" action="{% url 'reservacion_completada' id=r.id %}">
-            {% csrf_token %}
-            <button type="submit" class="search-btn">Completar</button>
-            
-        </form>
-        {% endif %}
-        {% else %}
-        <a><strong>Reservacion ya completada.</strong></a>
-    {% endif %}
-     {% if user.is_authenticated and user.is_staff %}
-        <a><strong>Usuario: {{ r.user.username }}</strong></a>
-    {% endif %}
-
-        {% include "core/reservation_confirm_delete.html" with r=r %}
+    <div class="service-card-info">
+        <span class="price">${{ r.total_price }}</span>
+        <span>{{ r.reservation_date }}</span>
+        <span>{{ r.reservation_time }}</span>
     </div>
+
+    <div class="service-card-actions">
+    {% if not r.completed %}
+        <div class="buttons-row">   
+            {% if user.is_authenticated and user.is_staff %}
+            <form method="POST" action="{% url 'reservacion_completada' id=r.id %}">
+                {% csrf_token %}
+                <button type="submit" class="button-reservation">Completar</button>
+            </form>
+            {% endif %}
+            <a href="#modal-{{ r.id }}" class="button-cancel">Cancelar</a>
+        </div>  
+    {% else %}
+        <span class="completed-label">Reservacion ya completada.</span>
+    {% endif %}
+</div>
+
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="service-card-user">
+        <strong>Usuario: {{ r.user.username }}</strong>
+    </div>
+    {% endif %}
+
+    {% include "core/reservation_confirm_delete.html" with r=r %}
+</div>
+
 

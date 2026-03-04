@@ -3,12 +3,12 @@ from .models import Service, ServiceType, Reservation, ServiceReservation
 from django.views import View
 from django.db.models import Sum, Q
 from django.http import HttpResponse
-from datetime import date
+from datetime import date, time
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -162,8 +162,6 @@ class ServiceDeleteView(View):
         except Exception as e:
             return HttpResponse("No se puede eliminar el servicio")
 
-
-
     
 class ReservationCreateView(LoginRequiredMixin,View):
     template_name = 'core/reservacion.html'
@@ -204,8 +202,27 @@ class ReservationCreateView(LoginRequiredMixin,View):
                 reservation=new_reservation,
                 service=service
             )
-        
-        return render(request, 'core/reservacion_success.html', {'reservation':new_reservation})
+
+        return redirect(f'/reservacion/?success=true&total={total_price}')
+
+
+def get_horas_disponibles(request):
+    date = request.GET.get('date')
+    
+    # Horas de 9am a 6pm
+    all_hours = [time(h, 0).strftime('%H:%M') for h in range(9, 18)]
+    
+    # Horas ya reservadas ese día
+    reserved_hours = Reservation.objects.filter(
+        reservation_date=date
+    ).values_list('reservation_time', flat=True)
+    
+    reserved_hours_str = [t.strftime('%H:%M') for t in reserved_hours]
+    
+    # Solo las horas libres
+    available = [h for h in all_hours if h not in reserved_hours_str]
+    
+    return JsonResponse({'available_hours': available})
 
 class ReservationSuccessView(View):
     # template_name = 'core/reservacion.html'

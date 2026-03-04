@@ -19,4 +19,5 @@ urlpatterns = [
     path('reservation/<int:id>/delete', ReservationDeleteView.as_view(), name='reservation_delete'),
     path('completed-reservation/<int:id>', CompletedReservation.as_view(), name='reservacion_completada'),
     path('reservaciones/',ReservationListAdminView.as_view(), name="reservaciones"),
+    path('get-horas-disponibles/', views.get_horas_disponibles, name='get_horas_disponibles'),
 ]

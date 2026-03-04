@@ -5,6 +5,12 @@
     margin-top: 15px;
 }
 
+.buttons-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .button-reservation {
     background-color: white;
     color: #e91e8c;
@@ -20,8 +26,7 @@
     background-color: #e91e8c;
     color: white;
     transform: translateY(-2px); /* Pequeño salto hacia arriba */
-}
-
+} 
 
 .button-update {
     background-color: white;
@@ -65,10 +70,14 @@
 
 .modal-content {
     background: pink;
+    color: black;
     padding: 2rem;
-    border-radius: 15px;
+    border-radius: 20px;
     max-width: 400px;
-    color: black; /* Para que el texto sea legible */
+    width: 90%;
+    color: black;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(236, 72, 153, 0.2);
 }
 
 /* Contenedor de los botones para alinearlos */
@@ -80,28 +89,21 @@
 }
 
 /* Estilo general para ambos botones */
-.button-delete, .button-cancel {
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none; /* Quita el subrayado al link de cancelar */
-    transition: all 0.3s ease;
-    border: none;
-    display: inline-block;
+.button-delete:hover, .button-cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.3);
 }
 
 /* BOTÓN ELIMINAR (Acción destructiva) */
 .button-delete {
-    background-color: white; 
+    background-color: white;
     color: #e91e8c;
-    padding: 8px 20px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 10px 24px;
+    border-radius: 50px;
     border: 2px solid #e91e8c;
-    transition: all 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
 .button-delete:hover {
@@ -112,23 +114,27 @@
 
 /* BOTÓN CANCELAR (Acción neutral) */
 .button-cancel {
-    background-color: white;
-    color: #e91e8c;
-    padding: 8px 20px;
-    border-radius: 20px;
+    background: #fff;
+    color: #ec4899;
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 2px solid #ec4899;
+    font-weight: 700;
     text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #e91e8c;
-    transition: all 0.3s;
+    transition: all 0.25s ease;
 }
 
 .button-cancel:hover {
     background-color: #e91e8c;
     color: white;
     transform: translateY(-2px);
-}
+} */
 
-/* Efecto al presionar (click) */
+/*Efecto al presionar clock*/
 .button-delete:active, .button-cancel:active {
+    transform: translateY(0);
+}
+/* Efecto al presionar (click) */
+    .button-delete:active, .button-cancel:active {
     transform: translateY(0);
 }

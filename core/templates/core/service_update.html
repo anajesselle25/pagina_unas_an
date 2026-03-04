@@ -3,7 +3,7 @@
 
 {% block css_styles %}
     <link rel="stylesheet" href= "{% static 'core/css/formulario_registro.css' %}">
-
+    {{ block.super }}
 {% endblock css_styles %}
 
 {% block title %} Actualización de Servicio {% endblock %}
@@ -47,7 +47,7 @@
                     {% endfor %}
                 </select>
 
-                <input type="submit" value="Actualizar Servicio" class="main_input main_input--send">
+                <input type="submit" value="Actualizar Servicio" class="search-btn">
             </form>
             <p>
                 <a href=" {% url 'maquillaje' %}" class="btn-return">Volver a la lista de servicios</a>

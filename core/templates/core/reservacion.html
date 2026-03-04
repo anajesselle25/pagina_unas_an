@@ -25,17 +25,60 @@
             </div>
 
             <div class="form-group">
-                <label for="reservation_date">Fecha Preferida</label>
+                <label for="reservation_date">-- Fecha Preferida --</label>
                 <input type="date" id="reservation_date" name="reservation_date" 
                     min= "{{ today }}" required>
             </div>
 
             <div class="form-group">
                 <label for="reservation_time">Hora Preferida</label>
-                <input type="time" id="reservation_time" name="reservation_time" required>
+                <select id="reservation_time" name="reservation_time" required>
+                <option value="">-- Primero selecciona una fecha --</option>
+                </select>
             </div>
 
+            <script>
+                const dateInput = document.getElementById('reservation_date');
+                const timeSelect = document.getElementById('reservation_time');
+
+                dateInput.addEventListener('change', function() {
+                    const selectedDate = this.value;
+                    timeSelect.innerHTML = '<option value="">Cargando...</option>';
+
+                    fetch(`/get-horas-disponibles/?date=${selectedDate}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            timeSelect.innerHTML = '<option value="">-- Selecciona una hora --</option>';
+                            if (data.available_hours.length === 0) {
+                                timeSelect.innerHTML = '<option value="">No hay horas disponibles este día</option>';
+                            } else {
+                                data.available_hours.forEach(hour => {
+                                    timeSelect.innerHTML += `<option value="${hour}">${hour}</option>`;
+                                });
+                            }
+                        });
+                });
+            </script>
             <button type="submit" class="submit-btn">Reservar Cita</button>
+            <div class="success-overlay" id="successModal">
+                <div class="success-modal">
+                    <div class="success-icon">✅</div>
+                    <h2>¡Su cita fue agendada con éxito!</h2>
+                    <div class="total">${{ reservation.total_price }}</div>
+                    <a href="{% url 'mis_reservaciones' %}" class="button-return">Ver mis reservaciones</a>
+                </div>
+            </div>
+
+            <script>
+                if (window.location.search.includes('success=true')) {
+                    const params = new URLSearchParams(window.location.search);
+                    const total = params.get('total');
+                    document.querySelector('.total').textContent = '$' + total;
+                    document.getElementById('successModal').style.display = 'flex';
+                }
+            </script>
+            
+            
 </form>
         </div>
     </div>
