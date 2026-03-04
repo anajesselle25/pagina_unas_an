@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
@@ -131,10 +131,10 @@ JAZZMIN_SETTINGS = {
     "site_header": "Library",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "an-studios",
+    "site_brand": "an_s",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "core/img/logo.png",
+    "site_logo": "core/img/logoo3.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -224,9 +224,11 @@ JAZZMIN_SETTINGS = {
     # for the full list of 5.13.0 free icon classes
     "icons": {
 
-        "core.User": "fas fa-regular fa-apple-whole",
+        "core.User": "fas fa-solid fa-users",
         "core.ServiceType": "fas fa-regular fa-apple-whole",
-
+        "core.Reservation": "fas fa-regular fa-calendar-days",
+        "core.Service": "fas fa-regular fa-bell",
+        "core.ServiceReservation": "fas fa-solid fa-clipboard-list",
     },
 #     # Icons that are used when one is not manually specified
 #     "default_icon_parents": "fas fa-chevron-circle-right",

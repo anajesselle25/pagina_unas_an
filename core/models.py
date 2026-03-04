@@ -36,8 +36,8 @@ class ServiceType(models.Model):
     name = models.CharField(max_length=200)
     class Meta:
         db_table= 'service_types'
-        verbose_name = 'Tipo_Servicio'
-        verbose_name_plural= 'Tipo_Servicios'
+        verbose_name = 'Tipo Servicio'
+        verbose_name_plural= 'Tipo Servicios'
     
     def __str__(self):
         return (f'Tipo de Servicio: {self.name}')
@@ -108,6 +108,8 @@ class ServiceReservation(models.Model):
 
     class Meta:
         db_table = 'service_reservations'
+        verbose_name = "Servicio Reservacion"
+        verbose_name_plural = "Servicios Reservaciones"
         unique_together= [['service', 'reservation']]
 
     def __str__(self):

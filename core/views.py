@@ -203,7 +203,7 @@ class ReservationCreateView(LoginRequiredMixin,View):
                 service=service
             )
 
-        return redirect(f'/reservacion/?success=true&total={total_price}')
+        return redirect(f'/reservacion/?success=true&total={total_price}', {'reservation': new_reservation})
 
 
 def get_horas_disponibles(request):
