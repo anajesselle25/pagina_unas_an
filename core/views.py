@@ -22,8 +22,7 @@ class ServiceCreateView(LoginRequiredMixin,View):
 
     def get(self, request, *args, **kwargs):
         service_types = ServiceType.objects.all()
-        if request.user.is_authenticated:
-            return redirect('login')
+
         return render(request, self.template_name, {'service_types' : service_types})
     
     def post(self, request, *args, **kwargs):
